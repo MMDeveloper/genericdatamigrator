@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * This is the site config class
+ * @package MMExtranet
+ */
+
+class config {
+
+    /**
+     * array winscp configuration values
+     * @var array
+     */
+    public static $winscp                       = array(
+            'executable' => '/path/to/winscp.exe'
+        );
+
+    /**
+     * array winscp configuration values
+     * @var array
+     */
+    public static $encrytionKey                 = 'def000005cbab44731b632f7225463f5319713db706cf8336112f722708f4df2b4c802d70d500d66fca0c174f93c93ff818fa3f7a8e3ab78fb75724b61b96f1097c56fcf';
+
+    /**
+     * software path, this is dynamically filled in
+     * @var string
+     */
+    public static $path                         = '';
+
+    /**
+     * buffer size before logs are dumped to file
+     * @var int
+     */
+    public static $alertLogBufferSize           = 5;
+
+    /**
+     * Suppress duplicate log entries
+     * @var bool
+     */
+    public static $suppressDuplicateLogEntries  = true;
+
+    /**
+     * date format for alert data prefix
+     * @var int
+     */
+    public static $logDataPrefixDateFormat    = 'Y-m-d H:i:s: ';
+
+    /**
+     * buffer size before export data is dumped to file
+     * @var int
+     */
+    public static $exportDataBufferSize         = 5;
+
+    /**
+     * roughly how many records (sent to egress) between reminders which export is currently running
+     * @var int
+     */
+    public static $egressRecordsBetweenExportFileReminder         = 2000;
+
+    /**
+     * array of locations and their associated properties (such as name, misc codes, etc)
+     * @var array
+     */
+    public static $locationProperties           = array();
+
+    /**
+     * array of locations and their associated properties (such as name, misc codes, etc)
+     * @var array
+     */
+    public static $connectionParametersStorage           = array();
+
+
+    public static function init() {
+        self::$connectionParametersStorage = array();
+
+        //Shared Credentials
+        self::$connectionParametersStorage['testDSN']['mysql'] = array (
+                'DSN' => 'mysql:unix_socket=/var/lib/mysql/mariadb.sock;dbname=mmFramework;port=3306;',
+                'username' => 'ZGVmNTAyMDA4ZDkwNGE5YWIwOWU1ZGNjODFhYjA5M2M4ZDc2MDYzMTdkZjc5YjU5MTE4NTJiNmZiMDhlZjUwM2IyMjk1YWFjZTUzNjllYjlkOGNmMDVlMjhjN2U4OTQzNTJjZjEyZDg3OWMyZDYzNDkwMmU3YTI2ZTM5MWIxM2JiOTAxZDM1MTE5MWNhNWYyZWVlMGM5Y2E1NmIwYWVmOTIyZTIwZGNmMDNkMjQwZTAyY2IxYmE5MjJhNGUxMA==',
+                'password' => 'ZGVmNTAyMDBmM2I3MzExOTFmYWJlZWI5YTViNTU5NmYzOTVmNTRjMGQyZjM5NWQ0NmMyOWIyYzE2ZWFkZDk1NjM0NzIwZGY4MjU1MTdmZmVjMjk5OTNiZDE3OGQ5ZjUxYzRmMDkyOWQ0Yzg5YjI3MzZkOGEyY2Y5NDdmNjRkMGU4YzFlMTRlOGExNjQwZmQ2MDkyOWQ3MDk5MGExMjllNjljNTdlODk0OTg5Y2RjZGYyNmFhYTBjNDU5MzQ4YjMzNmJhZTU2MjI='
+            );
+
+        self::$locationProperties = array (
+                            'testDSN' => array (
+                                    'districtCode' => '02'
+                                )
+                        );
+    }
+}
+?>
